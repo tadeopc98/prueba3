@@ -66,7 +66,7 @@ app.post('/login', (req, res) => { //DESDE HTML EJECUTAMOS EL POST CON NOMBRE /l
   connection.query(query, [username, password,'ACTIVO'], (error, results) => { //PASAMOS LOS PARAMETROS AL QUERY Y OBTENEMOS EL RESULTADO O EL ERROR
     if (error) {
       console.error('Error en la consulta:', error); //NOS MUESTRA EN LA CONSOLA SI ES QUE XISTE ALGUN ERROR EN EL QUERY
-      res.redirect('/'); //SI EXISTE UN ERROR NOS REDIRECCIONA A LA PAGINA PRINCIPAL QUE ES EL LOGIN
+      res.redirect('/dashboard/admin'); //SI EXISTE UN ERROR NOS REDIRECCIONA A LA PAGINA PRINCIPAL QUE ES EL LOGIN
     } else if (results.length === 1) {//VALIDAMOS SI ENCONTRO UN DATO EN EL QUERY
       const rol = results[0].rol;
       req.session.datos = { //GUUARDAMOS EN EL OBJETO DATOS TODO LO QUE TRAIGAMOS DEL USUARIO EN EL QUERY
