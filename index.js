@@ -39,6 +39,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 // Configuración de Express
 app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
