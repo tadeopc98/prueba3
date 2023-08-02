@@ -138,7 +138,7 @@ app.get('/createUsers', (req,res)=>{
 });
 
 
-app.get('/dashboard/UsersControlAdmin',verificarSesion, (req, res)=>{     
+app.get('/dashboard/UsersControlAdmin', (req, res)=>{     
   connection.query('SELECT * FROM usuarios',(error, results)=>{
       if(error){
           throw error;
