@@ -122,7 +122,7 @@ app.get('/dashboard/admin',verificarSesion, (req, res) => {
         throw error;
     } else {
       const datos = req.session.datos; //OBTENEMOS LA VARIABLE DATOS QUE CREAMOS EN EL METODO DE ARRIBA POST 
-  res.render('dashboard_admin.ejs',{results:results,datos}); //PASAMOS EL OBJETO CON LOS DATOS QUE RECUPERAMOS ANTERIORMENTE
+  res.render('dashboard_admin',{results:results,datos}); //PASAMOS EL OBJETO CON LOS DATOS QUE RECUPERAMOS ANTERIORMENTE
   //console.log("this is sede"+grafica:req.session.grafica)
     }   
   })
@@ -138,7 +138,7 @@ app.get('/createUsers', (req,res)=>{
 });
 
 
-app.get('/dashboard/UsersControlAdmin', (req, res)=>{     
+app.get('/dashboard/UsersControlAdmin',verificarSesion, (req, res)=>{     
   connection.query('SELECT * FROM usuarios',(error, results)=>{
       if(error){
           throw error;
