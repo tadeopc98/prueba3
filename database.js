@@ -6,8 +6,7 @@ function createConnection() {
     user: 'tpc98',
     password: 'AVNS_LJsJZyFu7aEv4QmdhQS',
     database: 'gasunion',
-    port: 25060,
-    
+    port: 25060
   });
 
   connection.connect((error) => {
