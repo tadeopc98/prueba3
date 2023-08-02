@@ -82,10 +82,8 @@ app.post('/login', (req, res) => { //DESDE HTML EJECUTAMOS EL POST CON NOMBRE /l
       
       //VALIDAMOS LOS ROLES PPARA REDIRECCIONAR A LA PAGINA RESPECTIVA
       if (rol === 'ADMINISTRADOR') {
-        
-            res.redirect('/dashboard/admin');
-          
-        
+        console.log('entro admin '+ req.session.datos);
+        res.redirect('/dashboard/admin');
       }else if (rol === 'SUPERVISOR') {
         res.redirect('/dashboard/operador');
       } else if(rol === 'COORDINADOR'){
@@ -124,7 +122,7 @@ app.get('/dashboard/admin',verificarSesion, (req, res) => {
         throw error;
     } else {
       const datos = req.session.datos; //OBTENEMOS LA VARIABLE DATOS QUE CREAMOS EN EL METODO DE ARRIBA POST 
-  res.render('dashboard_admin',{results:results,datos}); //PASAMOS EL OBJETO CON LOS DATOS QUE RECUPERAMOS ANTERIORMENTE
+  res.render('dashboard_admin.ejs',{results:results,datos}); //PASAMOS EL OBJETO CON LOS DATOS QUE RECUPERAMOS ANTERIORMENTE
   //console.log("this is sede"+grafica:req.session.grafica)
     }   
   })
