@@ -62,7 +62,7 @@ const verificarSesion = (req, res, next) => {
 app.post('/login', (req, res) => { //DESDE HTML EJECUTAMOS EL POST CON NOMBRE /login PARA QUE PODAMOS LLAMARLO
   const { username, password } = req.body; //TRAEMOS LOS DATOS DEL INDEX.HTML QUE SON LOS DATOS DE INICIO DE SESION
 
-  const query = 'SELECT * FROM usuarios WHERE username = ? AND password = ? AND status = ?'; //QUERY PARA OBTENER SI EXISTE UN USUARIO CON ESE USERNAME Y PASSWORD Y QUE ADEMAS ESTE ACTIVO
+  const query = 'SELECT * FROM gasunion.usuarios WHERE username = ? AND password = ? AND status = ?'; //QUERY PARA OBTENER SI EXISTE UN USUARIO CON ESE USERNAME Y PASSWORD Y QUE ADEMAS ESTE ACTIVO
   connection.query(query, [username, password,'ACTIVO'], (error, results) => { //PASAMOS LOS PARAMETROS AL QUERY Y OBTENEMOS EL RESULTADO O EL ERROR
     if (error) {
       console.error('Error en la consulta:', error); //NOS MUESTRA EN LA CONSOLA SI ES QUE XISTE ALGUN ERROR EN EL QUERY
@@ -117,7 +117,7 @@ app.get('/logout', (req, res) => {
 
 // DECLARAMOS LA Ruta del dashboard del administrador
 app.get('/dashboard/admin',verificarSesion, (req, res) => {
-  connection.query('SELECT * FROM clientes WHERE diaCarga <= DAY(CURRENT_DATE) + 5 ',(error, results)=>{
+  connection.query('SELECT * FROM gasunion.clientes WHERE diaCarga <= DAY(CURRENT_DATE) + 5 ',(error, results)=>{
     if(error){
         throw error;
     } else {
@@ -139,7 +139,7 @@ app.get('/createUsers', (req,res)=>{
 
 
 app.get('/dashboard/UsersControlAdmin',verificarSesion, (req, res)=>{     
-  connection.query('SELECT * FROM usuarios',(error, results)=>{
+  connection.query('SELECT * FROM gasunion.usuarios',(error, results)=>{
       if(error){
           throw error;
       } else {
@@ -151,7 +151,7 @@ app.get('/dashboard/UsersControlAdmin',verificarSesion, (req, res)=>{
 });
 
 app.get('/carteraClientes',verificarSesion, (req, res)=>{     
-  connection.query('SELECT * FROM clientes WHERE statusCliente = ?',['ACTIVO'],(error, results)=>{
+  connection.query('SELECT * FROM gasunion.clientes WHERE statusCliente = ?',['ACTIVO'],(error, results)=>{
       if(error){
           throw error;
       } else {
@@ -163,11 +163,11 @@ app.get('/carteraClientes',verificarSesion, (req, res)=>{
 });
 
 app.get('/createClient', (req,res)=>{
-  connection.query('SELECT  nombreBloque FROM bloques ',(error,results)=>{
+  connection.query('SELECT  gasunion.nombreBloque FROM bloques ',(error,results)=>{
       if(error){
           throw error;
       } else {
-        connection.query('SELECT MAX(consec) + 1 AS consec FROM folios ',(error,results2)=>{
+        connection.query('SELECT MAX(consec) + 1 AS consec FROM gasunion.folios ',(error,results2)=>{
           if(error){
               throw error;
           } else {
